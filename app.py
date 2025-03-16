@@ -16,7 +16,7 @@ load_dotenv()
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 if not GOOGLE_API_KEY:
-    st.error("❌ Google API Key not set up! Please set it in the environment.")
+    st.error("Google API Key not set up! Please set it in the environment.")
     st.stop()
 
 # Configure Gemini API
@@ -49,10 +49,10 @@ def extract_text_from_files(files):
                 text_list.append(df.to_string(index=False))
             
             else:
-                st.warning(f"⚠️ Unsupported file type: {file.name}")
+                st.warning(f"Unsupported file type: {file.name}")
         
         except Exception as e:
-            st.error(f"❌ Error reading file {file.name}: {str(e)}")
+            st.error(f"Error reading file {file.name}: {str(e)}")
 
     return "\n".join(text_list) if text_list else None
 
@@ -82,7 +82,7 @@ def get_conversational_chain():
         prompt = PromptTemplate(template=prompt_template, input_variables=["context", "question"])
         return load_qa_chain(llm=model, chain_type="stuff", prompt=prompt)
     except Exception as e:
-        st.error(f"❌ Error initializing language model: {str(e)}")
+        st.error(f"Error initializing language model: {str(e)}")
         return None
 
 # Process user input
@@ -91,7 +91,7 @@ def process_user_query(user_question):
     try:
         new_db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
     except Exception as e:
-        st.error("⚠️ Error loading vector store. Ensure files are processed first.")
+        st.error("Error loading vector store. Ensure files are processed first.")
         return {"output_text": [f"Error: {str(e)}"]}
 
     docs = new_db.similarity_search(user_question)
@@ -102,7 +102,7 @@ def process_user_query(user_question):
     try:
         return chain({"input_documents": docs, "question": user_question}, return_only_outputs=True)
     except Exception as e:
-        st.error(f"⚠️ Error processing question: {str(e)}")
+        st.error(f"Error processing question: {str(e)}")
         return {"output_text": [f"Error: {str(e)}"]}
 
 # Clear chat history
@@ -120,7 +120,7 @@ def main():
             with st.spinner("Processing files..."):
                 extracted_text = extract_text_from_files(files)
                 if not extracted_text:
-                    st.warning("⚠️ No extractable text found. Please upload a different file.")
+                    st.warning("No extractable text found. Please upload a different file.")
                     return
                 try:
                     text_chunks = split_text_into_chunks(extracted_text)
