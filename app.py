@@ -114,7 +114,7 @@ def main():
     st.set_page_config(page_title="Gemini File Chatbot", page_icon="🤖")
 
     with st.sidebar:
-        st.title("📂 File Uploader")
+        st.title("File Uploader")
         files = st.file_uploader("Upload Files", accept_multiple_files=True, type=["pdf", "txt", "csv", "xls", "xlsx"])
         if st.button("Submit & Process"):
             with st.spinner("Processing files..."):
@@ -125,9 +125,9 @@ def main():
                 try:
                     text_chunks = split_text_into_chunks(extracted_text)
                     create_vector_store(text_chunks)
-                    st.success("✅ Files processed successfully!")
+                    st.success("Files processed successfully!")
                 except Exception as e:
-                    st.error(f"❌ Error processing files: {str(e)}")
+                    st.error(f"Error processing files: {str(e)}")
 
         st.button("🗑️ Clear Chat History", on_click=clear_chat_history)
 
