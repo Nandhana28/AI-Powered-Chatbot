@@ -77,7 +77,7 @@ python -m streamlit run app.py
 ---
 
 ## Deployment Guide
-### 1️) Deploy on Streamlit Cloud
+### Deploy on Streamlit Cloud
 - Push your project to **GitHub**.
 - Go to [Streamlit Cloud](https://streamlit.io/cloud).
 - Click **"Deploy an app"**.
@@ -85,15 +85,6 @@ python -m streamlit run app.py
 - Set up environment variables (**GOOGLE_API_KEY**).
 - Click **"Deploy"**.
 
-### 2️) Deploy on Heroku (Optional)
-```bash
-heroku login
-heroku create your-app-name
-heroku config:set GOOGLE_API_KEY=your_google_api_key
-heroku buildpacks:add heroku/python
-git push heroku main
-heroku open
-```
 
 ---
 
