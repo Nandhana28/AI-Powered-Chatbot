@@ -17,8 +17,8 @@ This project is an AI-powered chatbot that enables users to **query, summarize, 
 ## Installation Guide
 ### 1) Clone the Repository
 ```bash
-git clone https://github.com/Nandhana28/ai-chatbot.git
-cd ai-chatbot
+git clone https://github.com/Nandhana28/AI-Powered-Chatbot.git
+cd AI-Powered-Chatbot
 ```
 
 ### 2️) Set Up Virtual Environment (Optional but Recommended)
